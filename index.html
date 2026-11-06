@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Asesmen Awal Laju Reaksi</title>
+<style>
+:root{--bg:#fafaf7;--fg:#1d2a2a;--card:#fff;--ac:#0f766e;--mu:#5b6b6b;--bd:#d9dfdc;--ok:#15803d;--no:#b91c1c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111a19;--fg:#e6efed;--card:#182423;--ac:#2dd4bf;--mu:#9bb0ac;--bd:#2c3d3b;--ok:#4ade80;--no:#f87171}}
+:root[data-theme="dark"]{--bg:#111a19;--fg:#e6efed;--card:#182423;--ac:#2dd4bf;--mu:#9bb0ac;--bd:#2c3d3b;--ok:#4ade80;--no:#f87171}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
+main{max-width:760px;margin:0 auto;padding:16px}h1{font-size:1.4rem;margin:.2em 0}h2{font-size:1.15rem;color:var(--ac)}
+nav{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}nav button,.btn{border:1px solid var(--bd);background:var(--card);color:var(--fg);padding:8px 14px;border-radius:8px;cursor:pointer;font:inherit}
+nav button.on,.btn{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin:10px 0}
+.q{margin:12px 0}.q b{display:block;margin-bottom:4px}label{display:block;padding:3px 0;cursor:pointer}
+.sc label{display:inline-block;margin-right:10px}.mu{color:var(--mu);font-size:.9rem}
+.ok{color:var(--ok)}.no{color:var(--no)}canvas{width:100%;border:1px solid var(--bd);border-radius:8px;background:var(--card)}
+input[type=range]{width:100%}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:520px){.row{grid-template-columns:1fr}}
+.tag{display:inline-block;background:var(--ac);color:var(--bg);border-radius:20px;padding:2px 12px;font-weight:600}
+</style></head><body><main>
+<h1>Asesmen Awal Laju Reaksi</h1><div class="mu">Kimia Kelas XI, Fase F</div>
+<div id="v"></div>
+<script>
+const A=[["Perangkat belajar utama",["HP","Laptop/tablet","Keduanya","Belum punya sendiri"]],["Koneksi internet",["Stabil","Kadang putus","Sering sulit"]],["Cara belajar yang paling membantu",["Video/animasi","Ringkasan teks","Praktik/simulasi","Diskusi"]],["Waktu belajar mandiri per hari",["< 30 menit","30–60 menit","> 60 menit"]],["Nilai kimia terakhir",["Di bawah KKM","Sekitar KKM","Di atas KKM"]],["Konteks paling menarik",["Makanan & pengawetan","Kesehatan & obat","Lingkungan (karat, limbah, asap)","Otomotif & energi","Kosmetik & rumah tangga","Industri"]],["Kegiatan favorit di kelas kimia",["Eksperimen","Menghitung","Proyek","Presentasi","Kuis/game"]],["Bidang yang diminati",["Kesehatan","Teknik","Sains murni","Pertanian/pangan","Bisnis","Lainnya"]]];
+const S=["Saya percaya diri belajar kimia mandiri lewat aplikasi.","Saya merasa kimia berguna dalam kehidupan sehari-hari.","Saya berani mencoba ulang jika hasil salah.","Saya nyaman bereksperimen lewat laboratorium maya."];
+const Q=[["Jumlah mol 4 g NaOH (Ar H=1, O=16, Na=23) adalah ....",["0,01 mol","0,1 mol","1 mol","4 mol","10 mol"],1],
+["0,2 mol zat dilarutkan hingga 500 mL. Molaritasnya ....",["0,1 M","0,2 M","0,4 M","0,5 M","1,0 M"],2],
+["Setelah disetarakan, koefisien HCl pada Mg + HCl → MgCl₂ + H₂ adalah ....",["1","2","3","4","5"],1],
+["N₂ + 3H₂ → 2NH₃. Jika 6 mol H₂ habis bereaksi, NH₃ yang terbentuk ....",["2 mol","3 mol","4 mol","6 mol","9 mol"],2],
+["50 mL HCl 2 M diencerkan hingga 100 mL. Konsentrasinya sekarang ....",["0,5 M","1 M","2 M","4 M","100 M"],1],
+["Yang BUKAN tanda reaksi kimia adalah ....",["timbul gas","perubahan warna","terbentuk endapan","perubahan suhu","air membeku menjadi es"],4],
+["Jika suhu zat dinaikkan, partikelnya ....",["bergerak lebih cepat, energi kinetik naik","bergerak lebih lambat","bertambah jumlahnya","berubah jadi atom lain","diam"],0],
+["Volume gas 0, 6, 12, 18 mL pada detik 0, 10, 20, 30. Laju rata-ratanya ....",["0,3 mL/s","0,6 mL/s","1,2 mL/s","6 mL/s","18 mL/s"],1],
+["Nilai x pada 2ˣ = 8 adalah ....",["2","3","4","6","8"],1],
+["Pada reaksi eksoterm ....",["kalor diserap, suhu lingkungan turun","kalor dan suhu tidak berubah","zat hanya berubah wujud","kalor dilepas, suhu lingkungan naik","hanya terjadi di bawah 0 °C"],3],
+["Peristiwa yang berlangsung paling cepat ....",["besi berkarat","pelapukan batuan","kembang api meledak","pembentukan fosil","fermentasi anggur"],2],
+["Laju reaksi adalah ....",["perubahan suhu per waktu","jumlah seluruh tumbukan","perubahan konsentrasi pereaksi/hasil per satuan waktu","lamanya reaksi hingga selesai","energi yang dibebaskan"],2],
+["Tablet effervescent larut lebih cepat di air hangat karena ....",["air hangat punya lebih banyak oksigen","partikel bergerak lebih cepat, tumbukan lebih sering dan lebih banyak yang berenergi cukup","air hangat menurunkan energi aktivasi","jumlah partikel tablet bertambah","massa tablet berkurang"],1],
+["1 g Mg pita vs 1 g Mg serbuk dengan HCl 1 M yang sama. Yang lebih cepat ....",["serbuk, luas permukaan lebih besar","pita, mol lebih banyak","sama, massa sama","serbuk, energi aktivasi lebih kecil","pita, bidang sentuh lebih besar"],0],
+["Fungsi katalis ....",["menambah jumlah hasil","menurunkan energi aktivasi lewat jalur alternatif","menaikkan suhu","mengubah entalpi reaksi","habis menjadi produk"],1],
+["[A] turun dari 0,8 M ke 0,2 M dalam 30 detik. Laju rata-rata ....",["0,01 M/s","0,02 M/s","0,03 M/s","0,06 M/s","0,60 M/s"],1],
+["Konsentrasi A naik 2 kali, laju menjadi 4 kali. Orde terhadap A ....",["0","1","2","3","4"],2],
+["Makanan di lemari es lebih awet. Pernyataan dan alasan yang benar ....",["Laju pembusukan lebih lambat; suhu rendah menurunkan energi kinetik sehingga tumbukan efektif berkurang","Laju pembusukan lebih lambat; suhu rendah menambah energi aktivasi","Laju pembusukan lebih cepat; partikel jadi lebih ringan","Laju tidak berubah; oksigen hilang seluruhnya"],0],
+["Tidak semua tumbukan menghasilkan reaksi karena ....",["partikel saling menolak","tumbukan hanya sekali","hasil reaksi menghalangi","hanya tumbukan berenergi ≥ Ea dan orientasi tepat yang bereaksi","katalis menghalangi tumbukan"],3],
+["Cara terbaik mengukur laju Mg + 2HCl → MgCl₂ + H₂ ....",["mengukur volume H₂ pada selang waktu tertentu","mengamati warna Mg","menimbang HCl tanpa waktu","menghitung gelembung udara ruangan","mengukur tinggi tabung"],0]];
+let R=null;
+const $=id=>document.getElementById(id),v=$("v");
+function go(){asm()}
+function radios(n,o,sc){return o.map((x,i)=>`<label><input type="radio" name="${n}" value="${i}"> ${sc?x:String.fromCharCode(65+i)+". "+x}</label>`).join("")}
+function asm(){if(R)return res();
+let h=`<div class="card"><h2>Bagian A. Profil, minat, kesiapan</h2><div class="mu">Tidak dinilai.</div>`;
+A.forEach((a,i)=>h+=`<div class="q"><b>${i+1}. ${a[0]}</b>${radios("a"+i,a[1])}</div>`);
+S.forEach((s,i)=>h+=`<div class="q sc"><b>${9+i}. ${s}</b><span class="mu">1 = sangat tidak setuju, 5 = sangat setuju</span><br>${radios("s"+i,[1,2,3,4,5],1)}</div>`);
+h+=`</div><div class="card"><h2>Bagian B. Prasyarat (soal 1–10)</h2>`;
+Q.forEach((q,i)=>{if(i==10)h+=`</div><div class="card"><h2>Bagian C. Pengetahuan awal laju reaksi (soal 11–20)</h2>`;h+=`<div class="q"><b>${i+1}. ${q[0]}</b>${radios("q"+i,q[1])}</div>`});
+v.innerHTML=h+`</div><button class="btn" onclick="sub()">Lihat hasil</button> <span id="er" class="no"></span>`}
+function val(n){const e=document.querySelector(`input[name=${n}]:checked`);return e?+e.value:-1}
+function sub(){let b=0,c=0,miss=0;Q.forEach((q,i)=>{const x=val("q"+i);if(x<0)miss++;if(x==q[2])i<10?b++:c++});
+if(miss){$("er").textContent=" Masih ada "+miss+" soal B/C belum dijawab.";return}
+const a=A.map((_,i)=>val("a"+i)),s=S.map((_,i)=>val("s"+i));
+let j=b>=8&&c>=7?"Pengayaan":b>=8?"Reguler":b>=5?"Penguatan":"Remedial dasar";
+R={b,c,j,a,s};go("as")}
+function res(){const{b,c,j,a,s}=R,K=["Pengayaan","Reguler","Penguatan","Remedial dasar"];
+const d={"Pengayaan":"Langsung ke orde reaksi, persamaan laju, dan lab maya terbuka.","Reguler":"Mulai dari teori tumbukan dan faktor-faktor laju reaksi.","Penguatan":"Ulas dulu mol, molaritas, dan grafik, lalu materi reguler.","Remedial dasar":"Mulai dari video dan latihan prasyarat dengan pendampingan guru."}[j];
+const ctx=a[5]>=0?A[5][1][a[5]]:"-",pf=a[2]>=0?A[2][1][a[2]]:"-";
+let n=[];if(a[1]==2)n.push("Koneksi sulit: gunakan mode ringan (teks dan simulasi, tanpa video).");
+if(s.some(x=>x>0&&x<=2))n.push("Beberapa jawaban kesiapan rendah: beri dukungan motivasi dan target kecil.");
+v.innerHTML=`<div class="card"><h2>Hasil asesmen</h2><p>Prasyarat (B): <b>${b}/10</b> · Laju reaksi (C): <b>${c}/10</b></p><p>Jalur belajar: <span class="tag">${j}</span></p><p>${d}</p><p>Konteks contoh: <b>${ctx}</b><br>Gaya belajar utama: <b>${pf}</b></p>${n.map(x=>`<p class="mu">• ${x}</p>`).join("")}<button class="btn" onclick="R=null;go('as')">Ulangi</button></div>`}
+go("as");
+</script></main></body></html>
